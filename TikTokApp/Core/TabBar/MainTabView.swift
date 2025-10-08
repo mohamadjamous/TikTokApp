@@ -9,31 +9,31 @@ import SwiftUI
 
 struct MainTabView: View {
     
-    @State private var selectedTabs = 0
+    @State private var selectedTab = 0
     
     var body: some View {
-        TabView{
+        TabView(selection: $selectedTab){
             
-            Text("Feed")
+            FeedView()
                 .tabItem{
                     VStack{
-                        Image(systemName: selectedTabs == 0 ? "house.fill" : "house")
-                            .environment(\.symbolVariants, selectedTabs == 0 ? .fill : .none)
+                        Image(systemName: selectedTab == 0 ? "house.fill" : "house")
+                            .environment(\.symbolVariants, selectedTab == 0 ? .fill : .none)
                         Text("Home")
                     }
                 }
-                .onAppear{selectedTabs = 0}
+                .onAppear{selectedTab = 0}
                 .tag(0)
             
             Text("Friends")
                 .tabItem{
                     VStack{
-                        Image(systemName: selectedTabs == 1 ? "person.2.fill" : "person.2")
-                            .environment(\.symbolVariants, selectedTabs == 1 ? .fill : .none)
+                        Image(systemName: selectedTab == 1 ? "person.2.fill" : "person.2")
+                            .environment(\.symbolVariants, selectedTab == 1 ? .fill : .none)
                         Text("Friends")
                     }
                 }
-                .onAppear{selectedTabs = 1}
+                .onAppear{selectedTab = 1}
                 .tag(1)
             
             Text("Upload Post")
@@ -45,23 +45,23 @@ struct MainTabView: View {
             Text("Notifications")
                 .tabItem{
                     VStack{
-                        Image(systemName: selectedTabs == 3 ? "heart.fill" : "heart")
-                            .environment(\.symbolVariants, selectedTabs == 3 ? .fill : .none)
+                        Image(systemName: selectedTab == 3 ? "heart.fill" : "heart")
+                            .environment(\.symbolVariants, selectedTab == 3 ? .fill : .none)
                         Text("Notifications")
                     }
                 }
-                .onAppear{selectedTabs = 3}
+                .onAppear{selectedTab = 3}
                 .tag(3)
             
             Text("Profile")
                 .tabItem{
                     VStack{
-                        Image(systemName: selectedTabs == 4 ? "person.fill" : "person")
-                            .environment(\.symbolVariants, selectedTabs == 4 ? .fill : .none)
+                        Image(systemName: selectedTab == 4 ? "person.fill" : "person")
+                            .environment(\.symbolVariants, selectedTab == 4 ? .fill : .none)
                         Text("Profile")
                     }
                 }
-                .onAppear{selectedTabs = 4}
+                .onAppear{selectedTab = 4}
                 .tag(4)
             
         }
