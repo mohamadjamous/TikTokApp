@@ -14,6 +14,7 @@
 		0B5F9F532E96897900D2C761 /* TikTokAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F522E96897900D2C761 /* TikTokAppTests.swift */; };
 		0B5F9F5D2E96897900D2C761 /* TikTokAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F5C2E96897900D2C761 /* TikTokAppUITests.swift */; };
 		0B5F9F5F2E96897900D2C761 /* TikTokAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F5E2E96897900D2C761 /* TikTokAppUITestsLaunchTests.swift */; };
+		0B5F9F832E96961A00D2C761 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F822E96961A00D2C761 /* MainTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		0B5F9F582E96897900D2C761 /* TikTokAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TikTokAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5F9F5C2E96897900D2C761 /* TikTokAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokAppUITests.swift; sourceTree = "<group>"; };
 		0B5F9F5E2E96897900D2C761 /* TikTokAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TikTokAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		0B5F9F822E96961A00D2C761 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		0B5F9F732E968A7400D2C761 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0B5F9F812E96956000D2C761 /* TabBar */,
 				0B5F9F7E2E968ACF00D2C761 /* Authentication */,
 				0B5F9F7D2E968ACE00D2C761 /* Comments */,
 				0B5F9F7C2E968ACE00D2C761 /* Components */,
@@ -174,7 +177,6 @@
 				0B5F9F792E968ACB00D2C761 /* Profile */,
 				0B5F9F782E968ACA00D2C761 /* Root */,
 				0B5F9F772E968AC900D2C761 /* Search */,
-				0B5F9F762E968AC800D2C761 /* TabBar */,
 				0B5F9F752E968AC600D2C761 /* UploadMedia */,
 			);
 			path = Core;
@@ -192,13 +194,6 @@
 			children = (
 			);
 			path = UploadMedia;
-			sourceTree = "<group>";
-		};
-		0B5F9F762E968AC800D2C761 /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = TabBar;
 			sourceTree = "<group>";
 		};
 		0B5F9F772E968AC900D2C761 /* Search */ = {
@@ -255,6 +250,14 @@
 			children = (
 			);
 			path = Authentication;
+			sourceTree = "<group>";
+		};
+		0B5F9F812E96956000D2C761 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				0B5F9F822E96961A00D2C761 /* MainTabView.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +392,7 @@
 			files = (
 				0B5F9F432E96897700D2C761 /* ContentView.swift in Sources */,
 				0B5F9F412E96897700D2C761 /* TikTokAppApp.swift in Sources */,
+				0B5F9F832E96961A00D2C761 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
