@@ -12,7 +12,7 @@ struct NotificationCell: View {
         HStack{
             Image(systemName: "person.circle.fill")
                 .resizable()
-                .frame(width: 28, height: 28)
+                .frame(width: 32, height: 32)
                 .foregroundStyle(Color(.systemGray5))
             
             HStack{
@@ -35,6 +35,7 @@ struct NotificationCell: View {
                 .frame(width: 48, height: 48)
                 .clipShape(RoundedRectangle(cornerRadius: 6))
         }
+        .padding(.horizontal)
     }
 }
 
