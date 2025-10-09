@@ -18,6 +18,8 @@
 		0B5F9F852E96B7FB00D2C761 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F842E96B7FB00D2C761 /* FeedView.swift */; };
 		0B5F9F872E96CAFF00D2C761 /* VerticalPagingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F9F862E96CAFF00D2C761 /* VerticalPagingScrollView.swift */; };
 		0BE7D50E2E98175800D0EC15 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D50D2E98175800D0EC15 /* FeedCell.swift */; };
+		0BE7D5102E981EF700D0EC15 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D50F2E981EF700D0EC15 /* ExploreView.swift */; };
+		0BE7D5122E981F0500D0EC15 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D5112E981F0500D0EC15 /* UserCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		0B5F9F842E96B7FB00D2C761 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		0B5F9F862E96CAFF00D2C761 /* VerticalPagingScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalPagingScrollView.swift; sourceTree = "<group>"; };
 		0BE7D50D2E98175800D0EC15 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		0BE7D50F2E981EF700D0EC15 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
+		0BE7D5112E981F0500D0EC15 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +209,8 @@
 		0B5F9F772E968AC900D2C761 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				0BE7D50F2E981EF700D0EC15 /* ExploreView.swift */,
+				0BE7D5112E981F0500D0EC15 /* UserCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -399,6 +405,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BE7D5122E981F0500D0EC15 /* UserCell.swift in Sources */,
+				0BE7D5102E981EF700D0EC15 /* ExploreView.swift in Sources */,
 				0B5F9F852E96B7FB00D2C761 /* FeedView.swift in Sources */,
 				0B5F9F432E96897700D2C761 /* ContentView.swift in Sources */,
 				0B5F9F412E96897700D2C761 /* TikTokAppApp.swift in Sources */,
