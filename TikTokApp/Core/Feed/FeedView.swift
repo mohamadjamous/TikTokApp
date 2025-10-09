@@ -13,15 +13,8 @@ struct FeedView: View {
     var body: some View {
         
         VerticalPagingScrollView(pageCount: 10) { post in
-            // each page will be exactly the visible screen height
-            Rectangle()
-                .fill(.pink)
-                .overlay {
-                    Text("Post \(post)")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                }
-                .ignoresSafeArea() // optional: page fills full screen
+                
+            FeedCell(post: post)
         }
         .ignoresSafeArea() // optional: page fills full screen
         
