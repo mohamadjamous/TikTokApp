@@ -20,6 +20,8 @@
 		0BE7D50E2E98175800D0EC15 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D50D2E98175800D0EC15 /* FeedCell.swift */; };
 		0BE7D5102E981EF700D0EC15 /* ExploreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D50F2E981EF700D0EC15 /* ExploreView.swift */; };
 		0BE7D5122E981F0500D0EC15 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D5112E981F0500D0EC15 /* UserCell.swift */; };
+		0BE7D5142E98218800D0EC15 /* NotificationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D5132E98218800D0EC15 /* NotificationsView.swift */; };
+		0BE7D5162E98219300D0EC15 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE7D5152E98219300D0EC15 /* NotificationCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		0BE7D50D2E98175800D0EC15 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		0BE7D50F2E981EF700D0EC15 /* ExploreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreView.swift; sourceTree = "<group>"; };
 		0BE7D5112E981F0500D0EC15 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		0BE7D5132E98218800D0EC15 /* NotificationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsView.swift; sourceTree = "<group>"; };
+		0BE7D5152E98219300D0EC15 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +236,8 @@
 		0B5F9F7A2E968ACC00D2C761 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				0BE7D5132E98218800D0EC15 /* NotificationsView.swift */,
+				0BE7D5152E98219300D0EC15 /* NotificationCell.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -413,6 +419,8 @@
 				0B5F9F872E96CAFF00D2C761 /* VerticalPagingScrollView.swift in Sources */,
 				0B5F9F832E96961A00D2C761 /* MainTabView.swift in Sources */,
 				0BE7D50E2E98175800D0EC15 /* FeedCell.swift in Sources */,
+				0BE7D5162E98219300D0EC15 /* NotificationCell.swift in Sources */,
+				0BE7D5142E98218800D0EC15 /* NotificationsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
