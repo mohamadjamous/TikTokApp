@@ -16,17 +16,24 @@ struct NotificationCell: View {
                 .foregroundStyle(Color(.systemGray5))
             
             HStack{
+                
                 Text("max.verstappen")
                     .font(.footnote)
-                    .fontWeight(.semibold)
+                    .fontWeight(.semibold) +
                 
-                Text("liked one of your posts.")
-                    .font(.footnote)
+                Text(" liked one of your posts. ")
+                    .font(.footnote) +
                 
-                Text("3")
+                Text("3d")
                     .font(.caption)
-                    .foregroundStyle(.gray)
+                    .foregroundColor(.gray)
             }
+            
+            Spacer()
+            
+            Rectangle()
+                .frame(width: 48, height: 48)
+                .clipShape(RoundedRectangle(cornerRadius: 6))
         }
     }
 }
