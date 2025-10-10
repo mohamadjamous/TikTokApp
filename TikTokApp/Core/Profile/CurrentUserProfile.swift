@@ -18,10 +18,15 @@ struct CurrentUserProfile: View {
                     
                     
                     // post grid view
+                    PostGridView()
                     
                 }
+                .padding(.top)
             }
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        
     }
 }
 
