@@ -10,9 +10,11 @@ import SwiftUI
 
 struct FeedView: View {
     
+    @StateObject var viewModel = FeedViewModel()
+    
     var body: some View {
         
-        VerticalPagingScrollView(pageCount: 10) { post in
+        VerticalPagingScrollView(posts: viewModel.posts) { post in
                 
             FeedCell(post: post)
         }

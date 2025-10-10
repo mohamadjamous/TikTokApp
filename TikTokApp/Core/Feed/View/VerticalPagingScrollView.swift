@@ -11,11 +11,12 @@ import UIKit
 
 /// A vertical paging container that hosts SwiftUI pages (works on Xcode < 15 / iOS 13+).
 struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
-    let pageCount: Int
-    private let contentBuilder: (Int) -> AnyView
+    
+    let posts: [Post]
+    private let contentBuilder: (Post) -> AnyView
 
-    init(pageCount: Int, @ViewBuilder content: @escaping (Int) -> Content) {
-        self.pageCount = pageCount
+    init(posts: [Post], @ViewBuilder content: @escaping (Post) -> Content) {
+        self.posts = posts
         self.contentBuilder = { index in AnyView(content(index)) }
     }
 
@@ -64,8 +65,8 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
 
         // create UIHostingController for each page and pin its height to the scrollView's visible height
         var hosts: [UIHostingController<AnyView>] = []
-        for i in 0..<pageCount {
-            let host = UIHostingController(rootView: contentBuilder(i))
+        for i in 0..<posts.count {
+            let host = UIHostingController(rootView: contentBuilder(posts[i]))
             host.view.backgroundColor = .clear
             vc.addChild(host)
             host.view.translatesAutoresizingMaskIntoConstraints = false
@@ -88,7 +89,7 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         // If page count changed, rebuild children
-        if context.coordinator.hostControllers.count != pageCount {
+        if context.coordinator.hostControllers.count != posts.count {
             // Remove old children
             for host in context.coordinator.hostControllers {
                 host.willMove(toParent: nil)
@@ -102,8 +103,8 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
 
             // Add new hosts
             var newHosts: [UIHostingController<AnyView>] = []
-            for i in 0..<pageCount {
-                let host = UIHostingController(rootView: contentBuilder(i))
+            for i in 0..<posts.count {
+                let host = UIHostingController(rootView: contentBuilder(posts[i]))
                 host.view.backgroundColor = .clear
                 uiViewController.addChild(host)
                 host.view.translatesAutoresizingMaskIntoConstraints = false
@@ -117,8 +118,8 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
         }
 
         // Otherwise just update the rootViews
-        for (i, host) in context.coordinator.hostControllers.enumerated() where i < pageCount {
-            host.rootView = contentBuilder(i)
+        for (i, host) in context.coordinator.hostControllers.enumerated() where i < posts.count {
+            host.rootView = contentBuilder(posts[i])
         }
     }
 

@@ -6,22 +6,17 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct FeedCell: View {
     
-    let post : Int
+    let post : Post
     
     var body: some View {
         
         ZStack{
             // each page will be exactly the visible screen height
-            Rectangle()
-                .fill(.pink)
-                .overlay {
-                    Text("Post \(post)")
-                        .foregroundColor(.white)
-                        .font(.largeTitle)
-                }
+            VideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl)!))
                 .ignoresSafeArea()
             
             
@@ -111,6 +106,6 @@ struct FeedCell: View {
 
 struct FeedCell_Previews: PreviewProvider {
     static var previews: some View {
-        FeedCell(post: 2)
+        FeedCell(post: Post(id: NSUUID().uuidString, videoUrl: ""))
     }
 }
