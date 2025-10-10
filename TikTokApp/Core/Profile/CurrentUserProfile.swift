@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CurrentUserProfile: View {
+    
     var body: some View {
         NavigationStack{
             ScrollView{
