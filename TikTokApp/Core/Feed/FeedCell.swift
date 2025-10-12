@@ -16,7 +16,7 @@ struct FeedCell: View {
         
         ZStack{
             // each page will be exactly the visible screen height
-            VideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl)!))
+            CustomVideoPlayer(player: AVPlayer(url: URL(string: post.videoUrl)!))
                 .ignoresSafeArea()
             
             
