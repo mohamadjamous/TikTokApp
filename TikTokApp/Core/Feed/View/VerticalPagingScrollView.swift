@@ -14,20 +14,28 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
     
     let posts: [Post]
     private let contentBuilder: (Post) -> AnyView
-
-    init(posts: [Post], @ViewBuilder content: @escaping (Post) -> Content) {
+    @Binding var currentPage: Int
+    
+    
+    init(posts: [Post], currentPage: Binding<Int>, @ViewBuilder content: @escaping (Post) -> Content) {
         self.posts = posts
+        self._currentPage = currentPage
         self.contentBuilder = { index in AnyView(content(index)) }
     }
-
-    func makeCoordinator() -> Coordinator { Coordinator() }
-
+    
+    func makeCoordinator() -> Coordinator {
+        let coordinator = Coordinator()
+        coordinator.parent = self
+        return coordinator
+    }
+    
     func makeUIViewController(context: Context) -> UIViewController {
         let vc = UIViewController()
         vc.view.backgroundColor = .clear
-
+        
         // Scroll view
         let scrollView = UIScrollView()
+        scrollView.delegate = context.coordinator
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isPagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
@@ -35,16 +43,16 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
         scrollView.alwaysBounceVertical = false
         // optional: make snapping feel snappy
         scrollView.decelerationRate = .fast
-
+        
         vc.view.addSubview(scrollView)
-
+        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: vc.view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: vc.view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: vc.view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: vc.view.trailingAnchor)
         ])
-
+        
         // Vertical stack of pages inside the scrollview's content area
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -52,7 +60,7 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
         stackView.alignment = .fill
         stackView.distribution = .fill
         stackView.spacing = 0
-
+        
         scrollView.addSubview(stackView)
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
@@ -62,7 +70,7 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
             // Keep stack width equal to scroll view width (no horizontal scrolling)
             stackView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor)
         ])
-
+        
         // create UIHostingController for each page and pin its height to the scrollView's visible height
         var hosts: [UIHostingController<AnyView>] = []
         for i in 0..<posts.count {
@@ -72,21 +80,21 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
             host.view.translatesAutoresizingMaskIntoConstraints = false
             stackView.addArrangedSubview(host.view)
             host.didMove(toParent: vc)
-
+            
             // Make each page exactly the height of the scrollView's frame
             host.view.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor).isActive = true
-
+            
             hosts.append(host)
         }
-
+        
         // store references in coordinator for updates / programmatic scrolling
         context.coordinator.hostControllers = hosts
         context.coordinator.scrollView = scrollView
         context.coordinator.stackView = stackView
-
+        
         return vc
     }
-
+    
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         // If page count changed, rebuild children
         if context.coordinator.hostControllers.count != posts.count {
@@ -97,10 +105,10 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
                 host.removeFromParent()
             }
             context.coordinator.hostControllers.removeAll()
-
+            
             guard let scrollView = context.coordinator.scrollView,
                   let stackView = context.coordinator.stackView else { return }
-
+            
             // Add new hosts
             var newHosts: [UIHostingController<AnyView>] = []
             for i in 0..<posts.count {
@@ -116,26 +124,34 @@ struct VerticalPagingScrollView<Content: View>: UIViewControllerRepresentable {
             context.coordinator.hostControllers = newHosts
             return
         }
-
+        
         // Otherwise just update the rootViews
         for (i, host) in context.coordinator.hostControllers.enumerated() where i < posts.count {
             host.rootView = contentBuilder(posts[i])
         }
     }
-
+    
     // Optional: helper to programmatically scroll to a page
-    final class Coordinator {
+    final class Coordinator : NSObject, UIScrollViewDelegate {
         var hostControllers: [UIHostingController<AnyView>] = []
         weak var scrollView: UIScrollView?
         weak var stackView: UIStackView?
-
+        var parent: VerticalPagingScrollView?
+        
+        
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            guard let parent = parent else { return }
+            let page = Int(round(scrollView.contentOffset.y / scrollView.bounds.height))
+            parent.currentPage = page   // update SwiftUI state
+        }
+        
         /// scroll to page (0-based)
         func scrollTo(page: Int, animated: Bool) {
             guard let scrollView = scrollView else { return }
             let y = CGFloat(page) * scrollView.bounds.height
             scrollView.setContentOffset(CGPoint(x: 0, y: y), animated: animated)
         }
-
+        
         /// current page index
         var currentPage: Int {
             guard let scrollView = scrollView, scrollView.bounds.height > 0 else { return 0 }

@@ -6,21 +6,41 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 
 struct FeedView: View {
     
     @StateObject var viewModel = FeedViewModel()
+    @State private var scrollPosition: Int = 0
+    @State private var player = AVPlayer()
+    @State private var postId: String = ""
     
     var body: some View {
         
-        VerticalPagingScrollView(posts: viewModel.posts) { post in
+        VerticalPagingScrollView(posts: viewModel.posts, currentPage: $scrollPosition) { post in
                 
-            FeedCell(post: post)
+            FeedCell(post: post, player: player)
+        }
+        .onAppear{
+            player.play()
         }
         .ignoresSafeArea() // optional: page fills full screen
+        .onChange(of: scrollPosition) { newPage in
+            postId = viewModel.posts[scrollPosition].id
+            playVideoOnChangeOfScrollPosition(postId: postId)
+            print("ScrollPosition: \(newPage)")
+            print("CurrentPostId: \(postId)")
+        }
+    }
+    
+    
+    func playVideoOnChangeOfScrollPosition(postId: String){
+        guard let currentPost = viewModel.posts.first(where: { $0.id == postId}) else {return}
         
-        
+        player.replaceCurrentItem(with: nil)
+        let playerItem = AVPlayerItem(url: URL(string: currentPost.videoUrl)!)
+        player.replaceCurrentItem(with: playerItem)
     }
 }
 

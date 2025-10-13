@@ -39,6 +39,12 @@ class FeedViewModel: ObservableObject{
             .init(id: NSUUID().uuidString, videoUrl: videoURLs[2]),
             .init(id: NSUUID().uuidString, videoUrl: videoURLs[3]),
             .init(id: NSUUID().uuidString, videoUrl: videoURLs[4]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[5]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[6]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[7]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[8]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[9]),
+            .init(id: NSUUID().uuidString, videoUrl: videoURLs[10]),
         ]
     }
     
